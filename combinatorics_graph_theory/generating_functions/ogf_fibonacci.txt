@@ -1,0 +1,58 @@
+The Code:
+terms <- 10
+
+fib <-numeric(terms)
+fib[1] <- 1
+fib[2] <- 1
+
+for(i in 3:terms){
+    fib[i] <- fib[i-1] + fib[i-2]
+}
+
+cat("First", terms, "Fibonacci numbers (OGF): \n")
+print(fib)
+
+1. What does <- mean in R?
+- In R, <- means "assign to"
+- It's like saying: "Give this value to this variable"
+
+So 
+terms <- 10 
+means:
+Make the variable called terms, store the number 10 inside it.
+!! You can technically use = too, but <- is the traditional R way
+
+2. How Variables Work
+- A variable is just a name attached to a value.
+- When you write fib <- numberic(terms), you are saying:
+ "Make a box named fib, and inside it, store a list of 10 zeros."
+
+ 3. What are Functions?
+ - A function is a little machine that takes input, does something, and gives output.
+ Example:
+ numeric(terms)
+  - You give it terms
+  - It builds 10 zeros and returns that list.
+numeric(n) creates a vector with n zeros.
+
+function_name(argument1, argument2, ...)
+and sometimes you need to load special libraries to get access to more functions.
+
+4. What is the For Loop?
+- A for loop means:
+    "Do something over and over again"
+
+for(i in 3:terms){
+    fib[i] <- fib[i-1] + fib[i-2]
+}
+means:
+Start with i = 3
+Go up to i = 10
+Each time:
+    - Set fib[i] to fib[i-1] + fib[i-2]
+Each new Fibobacci number is the sum of the two before it.
+
+5. What is cat() and print()?
+    - cat() stands for concatenate and print
+    - print() just prints whatever object you give it
+

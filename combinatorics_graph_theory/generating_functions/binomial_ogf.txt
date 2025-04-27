@@ -1,0 +1,26 @@
+binomial_coefficients <- functions(n){
+    return(choose(n, 0:n))
+}
+This creates a function called binomial_coefficients that takes one input n.
+Inside:
+- It uses the choose() function.
+- choose(n, 0:n) means:
+    - Calculate nC0, nC1, nC2, ... up to nCn.
+    - All bionomial coefficients for (1+x)^n
+
+Example:
+If n = 5, then choose(n, 0:n) gives:
+5C0, 5C1, 5C2, 5C3, 5C4, 5C5
+=> 1, 5, 10, 10, 5, 1
+Which are the coefficients in the expansion of (1+x)^5.
+
+n <- 5
+You set n = 5, meaning you want to expand (1+x)^5
+
+coefficients <- binomial_coefficients(n)
+You call your function with n = 5, and save the result into a variable coefficients
+
+cat(paste0("(1+x)^", n, " expansion coefficients (Binomial Coefficients):\n"))
+print(coefficients)
+- cat() prints a sentence without [] or "" around it
+- past0() glues pieces together with no spaces.
