@@ -1,0 +1,107 @@
+This is a TXT file to help understand ```learning1.R```
+
+students <- data.frame(
+        name = c("Alice", "Bob", "Charlie", "Diana", "Eve"),
+        math_score = c(88, 45, 78, 92, 56),
+        english_score = c(90, 55, 81, 89, 65)
+)
+
+What happens here:
+- students <- creates a variable called students.
+- data.frame() builds a table (called a data frame in R).
+- It has 3 columns:
+    - name -> A list of names
+    - math_score -> A list of Math scores
+    - english_score -> A list of English scores 
+
+-======================-
+
+cat("Original Students Data:\n")
+print(students)
+
+What happens here:
+- cat() prints a title or a message. (\n means new line)
+    - prints text without quotes and doesn't automatically create a new line
+- print(students) prints the table we created
+
+-======================-
+
+students$result <- ""
+
+What happens here:
+- You add a new column called result to the table
+- Every student now has a blank string ("") for result
+
+How $ Works in R
+- In R, if you have a data frame, you can access or create columns using $
+- The $ symbol connects the data frame name and the column name.
+
+To create a new/different column:
+students$new_column <- ""
+- Which will create a column called new_column with empty strings for all rows.
+
+If you want to initialize with:
+- Numbers, we can use 0
+- Text, we can use ""
+- NA, we can do NA
+
+Replacing a Single Value:
+students$math_score[students$name == "Bob"] <- 100
+What's happening here?
+- students$name == "Bob" finds the row where name is Bob.
+- [] selects that row
+- $math_score picks the math_score column
+- <- 100 assigns a new value
+
+The General Formula: dataframe$column[row_condition] <- new_value
+
+To Update Entire Column At Once:
+students$math_score <- students$math_score + 10
+This will add 10 to everyone's math score.
+
+-======================-
+
+Assign Pass or Fail Using For Loop:
+
+for(i in 1:nrow(students)){
+    avg <- (students$math_score[i] + students$english_score[i]) / 2
+
+    if(avg >= 60){
+        students$result[i] <- "Pass"
+    } else {
+        students$result[i] <- "Fail"
+    }
+}
+What happens here:
+- for(i in 1:nrow(students)) --> a loop from 1 to 5 (depending on how many rows in students)
+    nrow(students) gives the number of rows (students) in the data frame.
+- Each iteration:
+    - avg is the average score of that student
+    - if (avg >= 60) -> if their average is 60 or more they Pass
+    - otherwise they Fail
+- students$result[i] <- "Pass" or "Fail" writes the result BACK into the table
+
+-======================-
+
+Load dplyr Library
+
+library(dplyr)
+What happens here:
+- Load the dplyr package
+
+-======================-
+
+Assigning Grades Using Case_When:
+
+students$grade <- case_when(
+    (students$math_score + students$english_score) / 2 >= 90  ~ "A",
+    (students$math_score + students$english_score) / 2 >= 80  ~ "B",
+    (students$math_score + students$english_score) / 2 >= 70  ~ "C",
+    (students$math_score + students$english_score) / 2 >= 60  ~ "D",
+    TRUE ~ "F"
+)
+What happens here:
+- case_when is like a switch-case in other languages.
+- It checks conditions and assigns a value based on what condition matches.
+- You assign a letter grade based on the average score
+
